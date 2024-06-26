@@ -1,0 +1,104 @@
+@charset "UTF8";
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+fieldset {
+    border: 3px solid;
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    border-radius: 20px;
+
+
+
+}
+
+label {
+    display: block;
+    margin-top: 1em;
+    color: white;
+    z-index: 4;
+    font-weight: normal;
+    font-size: 20px;
+
+
+}
+
+legend{
+    
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: center;
+    font-size: 24px;
+    max-width: 250px;
+    margin: auto;
+    margin-bottom: 0.3em;
+    background-color: black;
+    color: antiquewhite;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+
+}
+
+.l1 {
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+
+.realce_forte {
+    font-size: medium;
+    font-weight: bolder;
+    color: aquamarine;
+    font-size: 20px;
+}
+
+.realce_forte_liquido {
+    font-size: large;
+    font-weight: bolder;
+    color: rgb(11, 146, 101);
+    font-size: 20px;
+}
+
+
+a {
+    display: block;
+    text-align: center;
+    color: white;
+    font-size: large;
+    text-decoration: none;
+    background-color: black;
+    border-radius: 5px;
+    margin-top: 2em;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+a:hover {
+
+    font-size: larger;
+    text-shadow: 5px;
+
+
+}
+a:active{
+    background-color: white;
+    color: black;
+    outline: 2px solid black;
+}
+
+.numeros{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

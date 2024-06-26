@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Salário</title>
+    <link rel="stylesheet" href="../static/css/resultado.css">
+</head>
+
+<body>
+
+    <div>
+        <form>
+            <fieldset id="titulo">
+                <legend><b>Salário</b></legend>
+
+                <label class="numeros">Referencia: {{referencia}}</label>
+                <label>Base : R$ {{base}}</label>
+                <label>Numero de plantão: {{platao}}</label>
+                <label>Horas trabalhadas : {{horas}}h</label>
+                <label>Risco : R$ {{risco}}</label>
+                <label>Hora extra 50%: R$ {{hora_extra50}}</label>
+                <label>Hora extra 75%: R$ {{hora_extra75}}</label>
+                <label>Auxilio alimentação : R$ {{alimentacao}}</label>
+                <label>Adicional noturno proporcional: R$ {{adicional_noturno}}</label>
+                <label>Total extra 24 horas : R$ {{extra24}}</label>
+                <label>Total extras de 10 horas: R$ {{extra10}}</label>
+                <label>Total de extra atipicas: R$ {{extraordinaria}}</label>
+                <label>Quinquênio : R${{val_quiquenio}}</label>
+                <label >Gratificação de Patrulha : R${{gratificacao_patrulha}}</label>
+                <label>Gratificação de Cargo: R${{cargos}}</label>
+                <br>
+                <br>
+
+
+
+
+                <legend class="l1">Descontos</legend>
+
+
+                <label>Santa Cruz Prev : R$ {{preve}}</label>
+                <label>Imposto de renda : R$ {{imposto}}</label>
+                <label>Faixa de IR: {{faixa}}</label>
+                <label>Desconto sindicato : R$ {{des_sindicato}}</label>
+
+
+
+
+
+                <legend class="l1">Salario</legend>
+
+
+                <label class="realce_forte">Salario bruto : <b>R$ {{bruto}}</b></label>
+                <label class="realce_forte_liquido">Salario liquido : <b>R$ {{liquido}}</b></label>
+
+
+                <a href="/">Voltar</a>
+
+
+            </fieldset>
+        </form>
+
+    </div>
+</body>
+
+</html>

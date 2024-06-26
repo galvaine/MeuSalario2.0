@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge , chrome=1">
+    <title>Meu Salário</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+
+<body>
+
+
+    <form action="/resultado" method="POST" id="Dados">
+        <fieldset>
+            <legend id="titulo"><b>Bem-Vindo</b></legend>
+
+            <label for="referencia">Selecione Classe e referencia:</label>
+            <select name="referencia">
+                <option value="I">I / Probatorio</option>
+                <option disabled>-------------3º Classe-------------</option>
+                <option value="II">II / 5 Anos</option>
+                <option value="III">III / 7 anos</option>
+                <option value="IV">IV / 9 anos</option>
+                <option value="V">V / 11 anos</option>
+                <option value="VI">VI / 13 anos</option>
+                <option disabled>-------------2º Classe-------------</option>
+                <option value="VII">VII / 15 anos</option>
+                <option value="VIII">VIII / 17 anos</option>
+                <option value="IX">IX / 19 anos</option>
+                <option value="X">X / 21 anos</option>
+                <option value="XI">XI / 23 anos</option>
+                <option disabled>-------------1º Classe-------------</option>
+                <option value="XII">XII / 25 anos</option>
+                <option value="XIII">XIII / 27 anos</option>
+                <option value="XIV">XIV / 29 anos</option>
+                <option value="XV">XV  / 31 anos</option>
+                <option value="XVI">XVI / 33 anos</option>
+            </select>
+
+
+            <label  for="num_plantao">Número de plantão: </label>
+            <select name="num_plantao">
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+
+            <legend id="h2">Número de Extras </legend>
+            <label  for="num_extra24">Número de extra 24h: </label>
+            <input type="number" name="num_extra24" id="num_extra24" required
+                oninvalid="this.setCustomValidity('Preencha com zero se não tirou extra')" placeholder="0 a ..."
+                oninput="this.setCustomValidity ('')">
+
+            <label  for="num_extra10dia">Número de extra de 10h dia: </label>
+            <input type="number" name="num_extra10dia" id="num_extra10dia" required
+                oninvalid="this.setCustomValidity('Preencha com zero se não tirou extra')"
+                oninput="this.setCustomValidity ('')" placeholder="0 a ...">
+
+            <label  for="num_extra10noite">Número de extra 10h noite: </label>
+            <input type="number" name="num_extra10noite" id="num_extra10noite" required
+                oninvalid="this.setCustomValidity('Preencha com zero se não tirou extra')"
+                oninput="this.setCustomValidity ('')" placeholder="0 a ...">
+
+            <legend id="h2">Extras Atípicas</legend>
+            <label for="ex_exepcionais_quantidade">Quantidade:</label>
+            <input type="number" name="ex_exepcionais_quantidade" id="ex_exepcionais_quantidade" placeholder="Natal, Carnaval, São João etc..."required
+            oninvalid="this.setCustomValidity('Preencha com zero se não tirou extra')"
+            oninput="this.setCustomValidity ('')">
+            <label for="ex_exepcionais_valor">Valor:</label>
+            <input type="number" name="ex_exepcionais_valor" id="ex_exepcionais_valor" placeholder="R$ 0,00" required
+            oninvalid="this.setCustomValidity('Preencha com zero se não tirou extra')"
+            oninput="this.setCustomValidity ('')">
+
+
+            <legend id="h2">Gratificações</legend>
+
+            <label for="quiquenio" name="quiquenio">Número de quinquênio:</label>
+            <div id="grad2">
+                    
+                <input class="slider" type="range" id="vol" name="vol" value="0" min="0" max="10" step="1"onchange="display.value=value">
+                <input class="slider-valu" type="text" id="display" value="0"oninput="vol.value=value" onchange="vol.value=value">
+            </div>
+            <Label>Gratificação de patrulhas</Label>
+
+            <select name="funcao">
+                <option value="0">Convecional</option>
+                <option value="15">Patrulha Comunitaria Escolar</option>
+                <option value="25">ROMUT</option>
+                <option value="15">Patrulha Ambiental</option>
+                <option value="25">ROMU</option>
+                <option value="15">Patrulha Maria da Penha</option>
+            </select>
+
+            <label>Cargos:</label>
+            <select name="cargos">
+                <option value="0">Guarda Municipal</option>
+                <option value="50">Subinspetor</option>
+                <option value="85">Inspetor</option>
+            </select>
+        
+            <legend id="h2">Descontos</legend>
+        
+            <label for="sindicato">Sindicalizado: </label>
+        <div id="grad1">  
+            <input class="selecao" type="radio" name="sindicato" id="xs" value="sim" checked>
+            <label class="selecao" for="xs">Sim</label>
+            <input class="selecao" type="radio" name="sindicato" id="xn" value="nao">
+            <label class="selecao" for="xn">Não</label>
+            
+        </div>
+
+            <button type="submit" id="Calcular">Calcular</button>
+            
+        </fieldset>
+    </form>
+    
+
+</body>
+
+</html>
