@@ -1,3 +1,9 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/MeuSalario.html" }]
-    }
+
+    "rewrites": [
+
+        { "source": "/(.*)", "destination": "/api/app" }
+
+    ]
+
+}
