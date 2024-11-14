@@ -10,6 +10,9 @@ def MeuSalario():
 
 @app.route("/resultado", methods=['POST', 'GET'])
 def resultado():
+
+#Capturando Valores<<
+
     referencia = request.form.get('referencia')
     num_plantao = request.form.get('num_plantao')
     num_extra24 = request.form.get('num_extra24')
@@ -25,9 +28,8 @@ def resultado():
     quiquenio = request.form.get('vol')
     sindicato = request.form.get('sindicato')
     
-
-
-    # Convertendo os valores para float e inter
+# Convertendo os valores
+# Valores Base<<
     if referencia == "I":
         con_base = 1800.00
         referencia = "I / Probatorio"
@@ -81,23 +83,24 @@ def resultado():
         referencia = "Classe e Referencia erradas"
 
     
-    con_baseInicial= 1800 #Valor do Base inicial
-    con_num_plantao = int(num_plantao)
-    con_num_extra24 = int(num_extra24)
-    con_var_extra24 = float(var_extra24)
-    con_num_extra10dia = int(num_extra10dia)
-    con_var_extra10dia = float(var_extra10dia)
-    con_num_extra10noite = int(num_extra10noite)
-    con_var_extra10noite = float(var_extra10noite)
-    con_gra_patrulhas = float(gra_patrulhas)
-    con_quiquenio = int(quiquenio)
+    con_baseInicial= 1800 #Valor Base inicial
+    con_num_plantao = int(num_plantao) # Numero de plantões
+    con_num_extra24 = int(num_extra24) # Numero de Extra 24 horas
+    con_var_extra24 = float(var_extra24) # Valores da Extra 24 horas
+    con_num_extra10dia = int(num_extra10dia)# Numero de Extra 10 horas dias
+    con_var_extra10dia = float(var_extra10dia)# Valores da Extra 10 horas dia
+    con_num_extra10noite = int(num_extra10noite)# Numero de Extra 10 horas noite
+    con_var_extra10noite = float(var_extra10noite)# Valores da Extra 10 horas noite
+    con_gra_patrulhas = float(gra_patrulhas) # Porcentagem da gratificação de patrulha
+    con_quiquenio = int(quiquenio) # Numeor de quiquenio
     con_var_extraExepicao = float(var_extraExtraordinaria)
     con_num_extraExtraordinaria = int(num_extraExtraordinaria)
     cargo = float(cargo)
 
- 
-    # Horas trabalhadas
-    horas = con_num_plantao * 24
+     #>>>Calculos<<<
+
+    
+    horas = con_num_plantao * 24 # Totla de Horas trabalhadas
     if con_num_plantao == 8:
         horas_extras = (con_num_extra10dia + con_num_extra10noite *
                         10) + (con_num_extra24 * 24) + 32
@@ -105,7 +108,7 @@ def resultado():
         horas_extras = (con_num_extra10dia +
                         con_num_extra10noite * 10) + (con_num_extra24 * 24) + 8
 
-    # Calculos
+
     # Risco
     risco = con_base * 0.35
 
@@ -134,13 +137,13 @@ def resultado():
         con_var_extraExepicao * con_num_extraExtraordinaria, 2)
 
     # Hora extras
-    if con_num_plantao == 8:
-        hora_extra50 = round((con_base / 160) * 1.50 * 17, 2)
-        hora_extra75 = round((con_base / 160) * 1.75 * 15, 2)
-    elif con_num_plantao == 7:
-        hora_extra50 = round((con_base / 160) * 1.50 * 4, 2)
-        hora_extra75 = round((con_base / 160) * 1.75 * 4, 2)
-    else:
+    if con_num_plantao == 8:# Calculo das horas Extras 8 plantão
+        hora_extra50 = round((con_base / 160) * 1.50 * 17, 2)# Calculo das horas Extras 50% 8 plantão
+        hora_extra75 = round((con_base / 160) * 1.75 * 15, 2)# Calculo das horas Extras 75% 8 plantão
+    elif con_num_plantao == 7:# Calculo das horas Extras 7 plantão
+        hora_extra50 = round((con_base / 160) * 1.50 * 4, 2)# Calculo das horas Extras 50% 7 plantão
+        hora_extra75 = round((con_base / 160) * 1.75 * 4, 2)# Calculo das horas Extras 75% 7 plantão
+    else:# mensagem de erro
         hora_extra50 = 'Numero de plantão invalido'
         hora_extra75 = 'Numero de plantão invalido'
 
@@ -158,7 +161,7 @@ def resultado():
     else:
         adicional_noturno = 'Revise os valores fornecidos'
 
-    # Descontos
+    # Descontos Santa Cruz PREV
     if con_num_plantao == 7 or con_num_plantao == 8:
         preve = round(con_base * 0.14, 2)
     else:
@@ -180,7 +183,7 @@ def resultado():
         
 
     # Imposto de renda
-    if con_num_plantao == 8 or con_num_plantao == 7:
+    if con_num_plantao == 8 or con_num_plantao == 7: # Base de Calculo
         IRF = con_base + risco + hora_extra50 + hora_extra75 + \
             total_extra24 + total_extra10 + adicional_noturno + val_quiquenio + \
             extra_extraordianria + gratificacao_patrulha - preve 
