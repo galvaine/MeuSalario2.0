@@ -29,57 +29,59 @@ def resultado():
 
     # Convertendo os valores para float e inter
     if referencia == "I":
-        con_base = 2060.82
+        con_base = 1800.00
         referencia = "I / Probatorio"
     elif referencia == "II":
-        con_base = 2184.46
+        con_base = 1908.00
         referencia = "II / 5 Anos"
     elif referencia == "III":
-        con_base = 2277.09
+        con_base = 1984.32
         referencia = "III / 7 Anos"
     elif referencia == "IV":
-        con_base = 2377.49
+        con_base = 2063.69
         referencia = "IV / 9 Anos"
     elif referencia == "V":
-        con_base = 2486.52
+        con_base = 2146.24
         referencia = "V / 11 Anos"
     elif referencia == "VI":
-        con_base = 2605.11
+        con_base = 2232.09
         referencia = "VI / 13 Anos"
     elif referencia == "VII":
-        con_base = 3251.22
+        con_base = 2678.51
         referencia = "VII / 15 Anos"
     elif referencia == "VIII":
-        con_base = 3444.73
+        con_base = 2785.65
         referencia = "VIII / 17 Anos"
     elif referencia == "IX":
-        con_base = 3657.96
+        con_base = 2897.07
         referencia = "IX / 19 Anos"
     elif referencia == "X":
-        con_base = 3893.46
+        con_base = 3012.96
         referencia = "X / 21 Anos"
     elif referencia == "XI":
-        con_base = 4023.86
+        con_base = 3073.22
         referencia = "XI / 23 Anos"
     elif referencia == "XII":
-        con_base = 6259.88
+        con_base = 4073.46
         referencia = "XII / 25 Anos"
     elif referencia == "XIII":
-        con_base = 6826.53
+        con_base = 4236.39
         referencia = "XIII / 27 Anos"
-    elif referencia == " XIV":
-        con_base = 7469.22
+    elif referencia == "XIV":
+        con_base = 4405.85
         referencia = "XIV / 29 Anos"
     elif referencia == "XV":
-        con_base = 8566.11
+        con_base = 4670.20
         referencia = "XV / 31 Anos"
     elif referencia == "XVI":
-        con_base = 9899.70
+        con_base = 4950.41
         referencia = "XVI / 33 Anos"
     else:
         con_base = 0
         referencia = "Classe e Referencia erradas"
-    con_baseInicial= 2060.82
+
+    
+    con_baseInicial= 1800 #Valor do Base inicial
     con_num_plantao = int(num_plantao)
     con_num_extra24 = int(num_extra24)
     con_var_extra24 = float(var_extra24)
@@ -105,7 +107,7 @@ def resultado():
 
     # Calculos
     # Risco
-    risco = con_baseInicial * 0.35
+    risco = con_base * 0.35
 
     # Alimentação
     ticket = con_baseInicial * 0.02
