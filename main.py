@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request
+from decimal import Decimal
 
 app = Flask(__name__)
 
@@ -10,6 +11,9 @@ def MeuSalario():
 
 @app.route("/resultado", methods=['POST', 'GET'])
 def resultado():
+
+#Capturando Valores<<
+
     referencia = request.form.get('referencia')
     num_plantao = request.form.get('num_plantao')
     num_extra24 = request.form.get('num_extra24')
@@ -25,79 +29,80 @@ def resultado():
     quiquenio = request.form.get('vol')
     sindicato = request.form.get('sindicato')
     
-
-
-    # Convertendo os valores para float e inter
+# Convertendo os valores
+# Valores Base<<
     if referencia == "I":
         con_base = 1800.00
         referencia = "I / Probatorio"
     elif referencia == "II":
         con_base = 1908.00
-        referencia = "II / 5 Anos"
+        referencia = "II / 4 a 5 Anos"
     elif referencia == "III":
         con_base = 1984.32
-        referencia = "III / 7 Anos"
+        referencia = "III / 6 a 7 Anos"
     elif referencia == "IV":
         con_base = 2063.69
-        referencia = "IV / 9 Anos"
+        referencia = "IV / 8 a 9 Anos"
     elif referencia == "V":
         con_base = 2146.24
-        referencia = "V / 11 Anos"
+        referencia = "V / 10 a 11 Anos"
     elif referencia == "VI":
         con_base = 2232.09
-        referencia = "VI / 13 Anos"
+        referencia = "VI / 12 a 13 Anos"
     elif referencia == "VII":
         con_base = 2678.51
-        referencia = "VII / 15 Anos"
+        referencia = "VII / 14 a 15 Anos"
     elif referencia == "VIII":
         con_base = 2785.65
-        referencia = "VIII / 17 Anos"
+        referencia = "VIII / 16 a 17 Anos"
     elif referencia == "IX":
         con_base = 2897.07
-        referencia = "IX / 19 Anos"
+        referencia = "IX / 18 a 19 Anos"
     elif referencia == "X":
         con_base = 3012.96
-        referencia = "X / 21 Anos"
+        referencia = "X / 20 a 21 Anos"
     elif referencia == "XI":
         con_base = 3073.22
-        referencia = "XI / 23 Anos"
+        referencia = "XI / 22 a 23 Anos"
     elif referencia == "XII":
         con_base = 4073.46
-        referencia = "XII / 25 Anos"
+        referencia = "XII / 24 a 25 Anos"
     elif referencia == "XIII":
         con_base = 4236.39
-        referencia = "XIII / 27 Anos"
+        referencia = "XIII / 26 a 27 Anos"
     elif referencia == "XIV":
         con_base = 4405.85
-        referencia = "XIV / 29 Anos"
+        referencia = "XIV / 28 a 29 Anos"
     elif referencia == "XV":
         con_base = 4670.20
-        referencia = "XV / 31 Anos"
+        referencia = "XV / 30 a 31 Anos"
     elif referencia == "XVI":
         con_base = 4950.41
-        referencia = "XVI / 33 Anos"
+        referencia = "XVI / 32 a 33 Anos"
     else:
         con_base = 0
         referencia = "Classe e Referencia erradas"
 
     
-    con_baseInicial= 1800 #Valor do Base inicial
-    con_num_plantao = int(num_plantao)
-    con_num_extra24 = int(num_extra24)
-    con_var_extra24 = float(var_extra24)
-    con_num_extra10dia = int(num_extra10dia)
-    con_var_extra10dia = float(var_extra10dia)
-    con_num_extra10noite = int(num_extra10noite)
-    con_var_extra10noite = float(var_extra10noite)
-    con_gra_patrulhas = float(gra_patrulhas)
-    con_quiquenio = int(quiquenio)
+    con_baseInicial= 1800 #Valor Base inicial
+    con_num_plantao = int(num_plantao) # Numero de plantões
+    con_num_extra24 = int(num_extra24) # Numero de Extra 24 horas
+    con_var_extra24 = float(var_extra24) # Valores da Extra 24 horas
+    con_num_extra10dia = int(num_extra10dia)# Numero de Extra 10 horas dias
+    con_var_extra10dia = float(var_extra10dia)# Valores da Extra 10 horas dia
+    con_num_extra10noite = int(num_extra10noite)# Numero de Extra 10 horas noite
+    con_var_extra10noite = float(var_extra10noite)# Valores da Extra 10 horas noite
+    con_gra_patrulhas = float(gra_patrulhas) # Porcentagem da gratificação de patrulha
+    con_quiquenio = int(quiquenio) # Numeor de quiquenio
     con_var_extraExepicao = float(var_extraExtraordinaria)
     con_num_extraExtraordinaria = int(num_extraExtraordinaria)
     cargo = float(cargo)
 
- 
-    # Horas trabalhadas
-    horas = con_num_plantao * 24
+     #>>>Calculos<<<
+
+    
+    horas = con_num_plantao * 24 # Totla de Horas trabalhadas
+
     if con_num_plantao == 8:
         horas_extras = (con_num_extra10dia + con_num_extra10noite *
                         10) + (con_num_extra24 * 24) + 32
@@ -105,7 +110,7 @@ def resultado():
         horas_extras = (con_num_extra10dia +
                         con_num_extra10noite * 10) + (con_num_extra24 * 24) + 8
 
-    # Calculos
+
     # Risco
     risco = con_base * 0.35
 
@@ -114,8 +119,8 @@ def resultado():
     alimentacao = round((ticket * con_num_plantao * 3) + (con_num_extra24 * ticket * 3) + (
         con_num_extra10dia * ticket * 1) + (con_num_extra10noite * ticket * 1), 2)
 
-    # Valores das extras
-    extra24 = con_var_extra24 - (ticket * 3)
+    # Valores da extra
+    extra24 = con_var_extra24 - (ticket * 3) - 18
     if con_var_extra10dia > 0:
         extra10d = con_var_extra10dia - (ticket * 1)
     else:
@@ -125,6 +130,7 @@ def resultado():
     else:
         extra10n = 0
 
+    #Valor total das Extras
     total_extra24 = round(extra24 * con_num_extra24, 2)
     total_extra10 = round((extra10d * con_num_extra10dia) +
                           (extra10n * con_num_extra10noite), 2)
@@ -132,35 +138,36 @@ def resultado():
     # Extra Extraordinaria
     extra_extraordianria = round(
         con_var_extraExepicao * con_num_extraExtraordinaria, 2)
+    
+    # Gratificações de patrulhas
+    gratificacao_patrulha = con_baseInicial * (con_gra_patrulhas/100)
 
     # Hora extras
-    if con_num_plantao == 8:
-        hora_extra50 = round((con_base / 160) * 1.50 * 17, 2)
-        hora_extra75 = round((con_base / 160) * 1.75 * 15, 2)
-    elif con_num_plantao == 7:
-        hora_extra50 = round((con_base / 160) * 1.50 * 4, 2)
-        hora_extra75 = round((con_base / 160) * 1.75 * 4, 2)
-    else:
+    if con_num_plantao == 8:# Calculo das horas Extras 8 plantão
+        hora_extra50 = round(((con_base + gratificacao_patrulha )/ 160) * 1.50 * 17, 2)# Calculo das horas Extras 50% 8 plantão
+        hora_extra75 = round(((con_base + gratificacao_patrulha ) / 160) * 1.70 * 15, 2)# Calculo das horas Extras 70% 8 plantão
+    elif con_num_plantao == 7:# Calculo das horas Extras 7 plantão
+        hora_extra50 = round(((con_base + gratificacao_patrulha ) / 160) * 1.50 * 4, 2)# Calculo das horas Extras 50% 7 plantão
+        hora_extra75 = round(((con_base + gratificacao_patrulha )/ 160) * 1.70 * 4, 2)# Calculo das horas Extras 70% 7 plantão
+    else:# mensagem de erro
         hora_extra50 = 'Numero de plantão invalido'
         hora_extra75 = 'Numero de plantão invalido'
-
-    # Gratificações de patrulhas
-    gratificacao_patrulha = con_base * (con_gra_patrulhas/100)
 
     # Quiquenio
     val_quiquenio = con_base * 0.05 * con_quiquenio
 
     # Adicional noturno
+    Quan_Adicional_AddNoturno = (7 * con_num_plantao) + ( 7 * con_num_extra24) + con_num_plantao + con_num_extra24
     if con_num_plantao == 8:
-        adicional_noturno = round((con_base / 160) * 0.20 * 64, 2)
+        adicional_noturno = (con_baseInicial / 160) * 0.20 * Quan_Adicional_AddNoturno
     elif con_num_plantao == 7:
-        adicional_noturno = round((con_base / 160) * 0.20 * 56, 2)
+        adicional_noturno = round((con_base / 160) * 0.20 * Quan_Adicional_AddNoturno, 2)
     else:
         adicional_noturno = 'Revise os valores fornecidos'
 
-    # Descontos
+    # Descontos Santa Cruz PREV
     if con_num_plantao == 7 or con_num_plantao == 8:
-        preve = round(con_base * 0.14, 2)
+        preve = (con_base + val_quiquenio) * 0.14
     else:
         preve = 'Revise os valores fornecidos'
 
@@ -180,10 +187,10 @@ def resultado():
         
 
     # Imposto de renda
-    if con_num_plantao == 8 or con_num_plantao == 7:
+    if con_num_plantao == 8 or con_num_plantao == 7: # Base de Calculo
         IRF = con_base + risco + hora_extra50 + hora_extra75 + \
-            total_extra24 + total_extra10 + adicional_noturno + val_quiquenio + \
-            extra_extraordianria + gratificacao_patrulha - preve 
+            total_extra24 + total_extra10 + val_quiquenio + \
+            extra_extraordianria - preve 
 
         if 0 <= IRF <= 2259.20:
             imposto = 0
@@ -198,8 +205,8 @@ def resultado():
             imposto = round((IRF * 0.2250) - 662.77, 2)
             faixa = '22,50%'
         else:
-            imposto = round((IRF * 0.270) - 896.00, 2)
-            faixa = '27%'
+            imposto = round((IRF * 0.2750) - 896.00, 2)
+            faixa = '27,50%'
     else:
         IRF = "erro"
         imposto = 'Revise os valores fornecidos'
@@ -240,7 +247,7 @@ def resultado():
     cargos = "{:.2f}".format(cargos).replace(".",",")
 
     # Apresentando valores
-    print('O valor é de {} e tem o tipo de {} e o valor calculado e de {}'.format(cargo, type(cargo), cargos))
+    print(f"Base de Calculo {IRF}")
     return render_template('resultado.html',
                            referencia=referencia,
                            base=con_base,
