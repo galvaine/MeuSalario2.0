@@ -17,11 +17,11 @@ def resultado():
     referencia = request.form.get('referencia')
     num_plantao = request.form.get('num_plantao')
     num_extra24 = request.form.get('num_extra24')
-    var_extra24 = 487.03
+    var_extra24 = 497.12
     num_extra10dia = request.form.get('num_extra10dia')
-    var_extra10dia = 174.49
+    var_extra10dia = 177.48
     num_extra10noite = request.form.get('num_extra10noite')
-    var_extra10noite = 214.26
+    var_extra10noite = 217.25
     var_extraExtraordinaria = request.form.get('ex_exepcionais_valor')
     num_extraExtraordinaria = request.form.get('ex_exepcionais_quantidade')
     gra_patrulhas = request.form.get('funcao')
@@ -117,23 +117,23 @@ def resultado():
     # Alimentação
     ticket = con_baseInicial * 0.02
     alimentacao = round((ticket * con_num_plantao * 3) + (con_num_extra24 * ticket * 3) + (
-        con_num_extra10dia * ticket * 1) + (con_num_extra10noite * ticket * 1), 2)
+        con_num_extra10dia * ticket) + (con_num_extra10noite * ticket), 2)
 
     # Valores da extra
-    extra24 = con_var_extra24 - (ticket * 3) - 18
+    ValorBaseExtra24 = con_var_extra24 - (ticket * 3) - 19.12
     if con_var_extra10dia > 0:
-        extra10d = con_var_extra10dia - (ticket * 1)
+        ValorBaseExtra10d = con_var_extra10dia - ticket 
     else:
-        extra10d = 0
+        ValorBaseExtra10d = 0
     if con_var_extra10noite > 0:
-        extra10n = con_var_extra10noite - (ticket * 1)
+        ValorBaseExtra10n = con_var_extra10noite - ticket 
     else:
-        extra10n = 0
+        ValorBaseExtra10n = 0
 
     #Valor total das Extras
-    total_extra24 = round(extra24 * con_num_extra24, 2)
-    total_extra10 = round((extra10d * con_num_extra10dia) +
-                          (extra10n * con_num_extra10noite), 2)
+    total_extra24 = round(ValorBaseExtra24 * con_num_extra24, 2)
+    total_extra10 = round((ValorBaseExtra10d * con_num_extra10dia) +
+                          (ValorBaseExtra10n * con_num_extra10noite), 2)
 
     # Extra Extraordinaria
     extra_extraordianria = round(
@@ -190,7 +190,7 @@ def resultado():
     if con_num_plantao == 8 or con_num_plantao == 7: # Base de Calculo
         IRF = con_base + risco + hora_extra50 + hora_extra75 + \
             total_extra24 + total_extra10 + val_quiquenio + \
-            extra_extraordianria + adicional_noturno- preve 
+            extra_extraordianria + adicional_noturno - preve 
 
         if 0 <= IRF <= 2259.20:
             imposto = 0
@@ -247,7 +247,7 @@ def resultado():
     cargos = "{:.2f}".format(cargos).replace(".",",")
 
     # Apresentando valores
-    print(f"Base de Calculo {IRF}")
+    print(f"Valor Base da extra 24 horas {ValorBaseExtra24}\n Valor base da extra 10 horas dia {ValorBaseExtra10d}\nValor base da extra 10 horas noite{ValorBaseExtra10n}")
     return render_template('resultado.html',
                            referencia=referencia,
                            base=con_base,
