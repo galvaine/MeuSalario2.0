@@ -158,6 +158,7 @@ def resultado():
 
     # Adicional noturno
     Quan_Adicional_AddNoturno = (7 * con_num_plantao) + ( 7 * con_num_extra24) + con_num_plantao + con_num_extra24
+    baseAdicionalNoturno = (con_baseInicial / 160) * 0.20 * 8
     if con_num_plantao == 8:
         adicional_noturno = (con_baseInicial / 160) * 0.20 * Quan_Adicional_AddNoturno
     elif con_num_plantao == 7:
@@ -190,7 +191,7 @@ def resultado():
     if con_num_plantao == 8 or con_num_plantao == 7: # Base de Calculo
         IRF = con_base + risco + hora_extra50 + hora_extra75 + \
             total_extra24 + total_extra10 + val_quiquenio + \
-            extra_extraordianria + adicional_noturno - preve 
+            extra_extraordianria + adicional_noturno + cargos - preve 
 
         if 0 <= IRF <= 2259.20:
             imposto = 0
@@ -247,7 +248,7 @@ def resultado():
     cargos = "{:.2f}".format(cargos).replace(".",",")
 
     # Apresentando valores
-    print(f"Valor Base da extra 24 horas {ValorBaseExtra24}\n Valor base da extra 10 horas dia {ValorBaseExtra10d}\nValor base da extra 10 horas noite{ValorBaseExtra10n}")
+    print(f"Base Adicional noturno {baseAdicionalNoturno}")
     return render_template('resultado.html',
                            referencia=referencia,
                            base=con_base,
