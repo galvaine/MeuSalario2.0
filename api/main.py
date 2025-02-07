@@ -144,11 +144,11 @@ def resultado():
 
     # Hora extras
     if con_num_plantao == 8:# Calculo das horas Extras 8 plantão
-        hora_extra50 = round(((con_base + gratificacao_patrulha )/ 160) * 1.50 * 17, 2)# Calculo das horas Extras 50% 8 plantão
+        hora_extra50 = round(((con_base + gratificacao_patrulha ) / 160) * 1.50 * 17, 2)# Calculo das horas Extras 50% 8 plantão
         hora_extra75 = round(((con_base + gratificacao_patrulha ) / 160) * 1.70 * 15, 2)# Calculo das horas Extras 70% 8 plantão
     elif con_num_plantao == 7:# Calculo das horas Extras 7 plantão
         hora_extra50 = round(((con_base + gratificacao_patrulha ) / 160) * 1.50 * 4, 2)# Calculo das horas Extras 50% 7 plantão
-        hora_extra75 = round(((con_base + gratificacao_patrulha )/ 160) * 1.70 * 4, 2)# Calculo das horas Extras 70% 7 plantão
+        hora_extra75 = round(((con_base + gratificacao_patrulha ) / 160) * 1.70 * 4, 2)# Calculo das horas Extras 70% 7 plantão
     else:# mensagem de erro
         hora_extra50 = 'Numero de plantão invalido'
         hora_extra75 = 'Numero de plantão invalido'
@@ -190,7 +190,7 @@ def resultado():
     if con_num_plantao == 8 or con_num_plantao == 7: # Base de Calculo
         IRF = con_base + risco + hora_extra50 + hora_extra75 + \
             total_extra24 + total_extra10 + val_quiquenio + \
-            extra_extraordianria - preve 
+            extra_extraordianria + adicional_noturno- preve 
 
         if 0 <= IRF <= 2259.20:
             imposto = 0
