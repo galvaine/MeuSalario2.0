@@ -225,7 +225,7 @@ def resultado():
 
     if con_num_plantao == 7 or con_num_plantao == 8:
         liquido = round(con_base + risco + alimentacao + adicional_noturno + total_extra24 +
-                        total_extra10 + hora_extra50 + hora_extra75 + val_quiquenio + gratificacao_patrulha + extra_extraordinaria - preve - imposto - des_sindicato, 2)
+                        total_extra10 + hora_extra50 + hora_extra75 + val_quiquenio + gratificacao_patrulha + extra_extraordianria - preve - imposto - des_sindicato, 2)
     else:
         liquido = 'Revise os valores fornecidos'
 
