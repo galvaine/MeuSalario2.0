@@ -139,16 +139,15 @@ def resultado():
     extra_extraordianria = round(
         con_var_extraExepicao * con_num_extraExtraordinaria, 2)
     
-    # Gratificações de patrulhas
-    gratificacao_patrulha = con_baseInicial * (con_gra_patrulhas/100)
+    
 
 # Hora extras exedentes
     if con_num_plantao == 8:# Calculo das horas Extras 8 plantão
-        hora_extra50 = round(((con_base + gratificacao_patrulha ) / 160) * 1.50 * 17, 2)# Calculo das horas Extras 50% 8 plantão
-        hora_extra75 = round(((con_base + gratificacao_patrulha ) / 160) * 1.70 * 15, 2)# Calculo das horas Extras 70% 8 plantão
+        hora_extra50 = round((con_base / 160) * 1.50 * 17, 2)# Calculo das horas Extras 50% 8 plantão
+        hora_extra75 = round((con_base / 160) * 1.70 * 15, 2)# Calculo das horas Extras 70% 8 plantão
     elif con_num_plantao == 7:# Calculo das horas Extras 7 plantão
-        hora_extra50 = round(((con_base + gratificacao_patrulha ) / 160) * 1.50 * 4, 2)# Calculo das horas Extras 50% 7 plantão
-        hora_extra75 = round(((con_base + gratificacao_patrulha ) / 160) * 1.70 * 4, 2)# Calculo das horas Extras 70% 7 plantão
+        hora_extra50 = round((con_base / 160) * 1.50 * 4, 2)# Calculo das horas Extras 50% 7 plantão
+        hora_extra75 = round((con_base / 160) * 1.70 * 4, 2)# Calculo das horas Extras 70% 7 plantão
     else:# mensagem de erro
         hora_extra50 = 'Numero de plantão invalido'
         hora_extra75 = 'Numero de plantão invalido'
