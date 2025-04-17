@@ -112,7 +112,7 @@ def resultado():
 
 
 # Risco
-    risco = con_base * 0.35
+    risco = con_base * 0.50
 
 # Alimentação
     ticket = con_baseInicial * 0.02
